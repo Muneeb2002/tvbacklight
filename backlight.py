@@ -17,6 +17,7 @@ def random_color():
 
 
 while True:
+    print("lolcat")
     # Set each LED to a random color
     for i in range(LED_COUNT):
         pixels[i] = random_color()
