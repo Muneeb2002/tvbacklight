@@ -27,7 +27,7 @@ while True:
 
     # Optional: Add a small delay to control processing speed
     cv2.waitKey(10)  # Adjust for real-time processing
-    time.sleep(1000)
+    time.sleep(1)
 # Cleanup
 cap.release()
 cv2.destroyAllWindows()
