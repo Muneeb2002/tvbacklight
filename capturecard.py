@@ -1,5 +1,6 @@
 import cv2
 import numpy as np
+import time
 
 # Open the capture device (modify device index if needed)
 cap = cv2.VideoCapture(0)  # Use /dev/video0, change index if required
@@ -25,8 +26,8 @@ while True:
     print(np.array(small_frame_rgb, dtype=int))  # Print as integer values
 
     # Optional: Add a small delay to control processing speed
-    cv2.waitKey(1000)  # Adjust for real-time processing
-
+    cv2.waitKey(10)  # Adjust for real-time processing
+    time.sleep(1000)
 # Cleanup
 cap.release()
 cv2.destroyAllWindows()
