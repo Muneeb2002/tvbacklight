@@ -1,17 +1,18 @@
-import RPi.GPIO as GPIO
+import board
+import digitalio
 import time
 
-# Define GPIO pin
-BUTTON_PIN = 18  # Connect this to the 'S' pin of the button
-Value = false
-# GPIO setup
-GPIO.setmode(GPIO.BCM)
-GPIO.setup(BUTTON_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP)  # Pull-up resistor enabled
+# Setup button on GPIO 21
+button = digitalio.DigitalInOut(board.D21)
+button.direction = digitalio.Direction.INPUT
+button.pull = digitalio.Pull.UP  # Enable internal pull-up resistor
+value = false
 
 print("Press the button!")
 
 while True:
-    if GPIO.input(BUTTON_PIN) == GPIO.LOW:  # Button pressed
-        print("Button Pressed!")
-        value = !value
-        time.sleep(0.2)  # Small delay to prevent duplicate presses
+    if not button.value:  # Button pressed (LOW state)
+        print("Button Pressed! ", value)
+        value = not value
+        time.sleep(0.2)  # Prevent multiple detections
+
