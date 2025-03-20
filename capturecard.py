@@ -1,29 +1,32 @@
-import time
-import board
-import neopixel
-import random
+import cv2
+import numpy as np
 
-# Configuration
-LED_COUNT = 2          # Number of LEDs in the strip
-LED_PIN = board.D18    # GPIO pin connected to the LED strip (D18 is common for WS2812)
-BRIGHTNESS = 0.5       # Brightness (0.0 to 1.0)
+# Open the capture device (modify device index if needed)
+cap = cv2.VideoCapture(0)  # Use /dev/video0, change index if required
 
-# Initialize the LED strip
-pixels = neopixel.NeoPixel(LED_PIN, LED_COUNT, brightness=BRIGHTNESS, auto_write=False)
-
-def random_color():
-    """Generate a random RGB color."""
-    return (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
-
+# Set resolution if needed (optional, depends on your capture card)
+cap.set(cv2.CAP_PROP_FRAME_WIDTH, 640)
+cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)
 
 while True:
-    print("lolcat")
-    # Set each LED to a random color
-    for i in range(LED_COUNT):
-        pixels[i] = random_color()
-    
-    # Show the new colors
-    pixels.show()
-    
-    # Wait for half a second
-    time.sleep(0.5)
+    ret, frame = cap.read()
+    if not ret:
+        print("Failed to capture frame")
+        continue
+
+    # Resize to 2x2 with RGB (preserving color)
+    small_frame = cv2.resize(frame, (2, 2), interpolation=cv2.INTER_AREA)
+
+    # Convert the 2x2 BGR array to RGB format
+    small_frame_rgb = cv2.cvtColor(small_frame, cv2.COLOR_BGR2RGB)
+
+    # Print the 2x2 RGB values
+    print("\n2x2 RGB Pixel Values:")
+    print(np.array(small_frame_rgb, dtype=int))  # Print as integer values
+
+    # Optional: Add a small delay to control processing speed
+    cv2.waitKey(10)  # Adjust for real-time processing
+
+# Cleanup
+cap.release()
+cv2.destroyAllWindows()
