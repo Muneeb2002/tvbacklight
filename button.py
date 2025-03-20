@@ -6,7 +6,7 @@ import time
 button = digitalio.DigitalInOut(board.D21)
 button.direction = digitalio.Direction.INPUT
 button.pull = digitalio.Pull.UP  # Enable internal pull-up resistor
-value = false
+value = False
 
 print("Press the button!")
 
