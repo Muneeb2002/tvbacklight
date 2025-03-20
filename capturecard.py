@@ -25,7 +25,7 @@ while True:
     print(np.array(small_frame_rgb, dtype=int))  # Print as integer values
 
     # Optional: Add a small delay to control processing speed
-    cv2.waitKey(10)  # Adjust for real-time processing
+    cv2.waitKey(1000)  # Adjust for real-time processing
 
 # Cleanup
 cap.release()
