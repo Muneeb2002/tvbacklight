@@ -15,14 +15,14 @@ def random_color():
     """Generate a random RGB color."""
     return (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
 
-try:
-    while True:
-        # Set each LED to a random color
-        for i in range(LED_COUNT):
-            pixels[i] = random_color()
-        
-        # Show the new colors
-        pixels.show()
-        
-        # Wait for half a second
-        time.sleep(0.5)
+
+while True:
+    # Set each LED to a random color
+    for i in range(LED_COUNT):
+        pixels[i] = random_color()
+    
+    # Show the new colors
+    pixels.show()
+    
+    # Wait for half a second
+    time.sleep(0.5)
