@@ -1,4 +1,4 @@
 #!/usr/bin python3
 
-while true:
+while True:
     print("lolcat")
