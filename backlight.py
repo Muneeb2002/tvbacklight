@@ -4,7 +4,7 @@ import neopixel
 import random
 
 # Configuration
-LED_COUNT = 2          # Number of LEDs in the strip
+LED_COUNT = 159          # Number of LEDs in the strip
 LED_PIN = board.D18    # GPIO pin connected to the LED strip (D18 is common for WS2812)
 BRIGHTNESS = 0.5       # Brightness (0.0 to 1.0)
 
