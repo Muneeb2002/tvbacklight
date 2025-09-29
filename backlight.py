@@ -21,7 +21,7 @@ while True:
     # Set each LED to a random color
     for i in range(LED_COUNT):
         pixels[i] = random_color()
-        print(pixel[i])
+        print(pixels[i])
     
     # Show the new colors
     pixels.show()
